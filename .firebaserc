@@ -1,0 +1,21 @@
+{
+  "targets": {
+    "login-ng-378a8": {
+      "hosting": {
+        "Bellavista": [
+          "login-ng-378a8"
+        ]
+      }
+    },
+    "union-deportiva-bellavista": {
+      "hosting": {
+        "Bellavista": [
+          "union-deportiva-bellavista"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "union-deportiva-bellavista"
+  }
+}

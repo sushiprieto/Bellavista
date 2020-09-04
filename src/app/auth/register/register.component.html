@@ -1,0 +1,31 @@
+<div class="row">
+  <div class="col-6 mx-auto mt-5"></div>
+  <div class="card-body">
+    <h2 class="text-center">CREAR UNA CUENTA</h2>
+    <form [formGroup]="registerForm" (ngSubmit)="onRegister()">
+
+      <div class="form-group">
+        <label for="email">Correo electrónico</label>
+        <input type="email" class="form-control" formControlName="email" />
+      </div>
+
+      <div class="form-group">
+        <label for="password">Contraseña</label>
+        <input type="password" class="form-control" formControlName="password" />
+      </div>
+
+      <div class="form-group">
+        <label for="password">Confirmar contraseña</label>
+        <input type="password" class="form-control" formControlName="password" />
+      </div>
+
+      <button class="btn btn-primary btn-lg btn-block">Crear cuenta</button>
+
+    </form>
+
+    <div class="form-group mt-3">
+      <p>¿Ya tienes una cuenta?<a [routerLink]="['/login']">Acceder</a></p>
+    </div>
+
+  </div>
+</div>

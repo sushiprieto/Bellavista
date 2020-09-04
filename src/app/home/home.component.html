@@ -1,0 +1,230 @@
+<div class="row">
+  <div class="col-6 mx-auto mt-5"></div>
+  <div class="card-body">
+    <h2 class="text-center">FORMULARIO DE LOCALIZACIÓN PERSONAL (FLP)</h2>
+    <form [formGroup]="homeForm" (ngSubmit)="homeForm.valid && onSubmit()">
+
+      <br />
+
+      <div class="form-group">
+        <label for="exampleInputEmail1">Este formulario debe ser completado por todos los participantes de la
+          actividad.
+          En el caso de instalaciones deportivas, clubes, asociaciones y demás personas jurídicas, serán éstas las
+          responsables de pasar este protocolo a sus asociados-usuarios, siendo además responsables de su costodia, a
+          efectos de cumplimiento de la LOPDGDD
+        </label>
+      </div>
+
+      <div class="form-group">
+        <label for="inputEmail">Tipo de colectivo</label>
+        <input type="text" class="form-control" id="inputColectivo" placeholder="Introduzca tipo de colectivo"
+          formControlName="colectivo">
+        <small id="emailHelp" class="form-text text-muted">(Deportista, organización o personal club, usuario,
+          familiar,
+          otros)</small>
+      </div>
+
+      <div class="form-group">
+        <label for="exampleInputEmail1">Nombre y apellidos</label>
+        <input type="text" class="form-control" id="inputNombre" placeholder="Introduzca nombre y apellidos"
+          formControlName="nombre"
+          [ngClass]="{'is-invalid':homeForm.get('nombre').touched && homeForm.get('nombre').invalid}" required>
+        <small id="emailHelp" class="form-text text-muted">(El del tutor en caso de menores)</small>
+        <div class="invalid-feedback">
+          <div>*Es obligatorio introducir el Nombre y Apellidos</div>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="exampleInputEmail1">DNI</label>
+        <input type="text" class="form-control" id="inputDni" placeholder="Introduzca DNI" formControlName="dni"
+          maxlength="9" [ngClass]="{'is-invalid':homeForm.get('dni').touched && homeForm.get('dni').invalid}"
+          pattern="(([X-Z]{1})([-]?)(\d{7})([-]?)([a-zA-Z]{1}))|((\d{8})([-]?)([a-zA-Z]{1}))">
+        <div *ngIf="homeForm.get('dni').touched && homeForm.get('dni').invalid" class="invalid-feedback">
+          <div *ngIf="homeForm.get('dni').errors.required">*Es obligatorio introducir el DNI</div>
+          <div *ngIf="homeForm.get('dni').errors.pattern">*El DNI es incorrecto</div>
+        </div>
+        <small id="emailHelp" class="form-text text-muted">(El del tutor en caso de menores)</small>
+      </div>
+
+      <div class="form-group">
+        <label for="exampleInputEmail1">Dirección habitual</label>
+        <input type="text" class="form-control" id="inputDireccion" aria-describedby="emailHelp"
+          placeholder="Introduzca dirección" formControlName="direccion">
+        <small id="emailHelp" class="form-text text-muted">(Calle/apartamento/ciudad/numero postal/pais)</small>
+      </div>
+
+      <div class="form-group">
+        <label for="exampleInputEmail1">Número de teléfono</label>
+        <input type="number" class="form-control" id="inputTelefono" aria-describedby="emailHelp"
+          placeholder="Introduzca teléfono" formControlName="telefono">
+        <small id="emailHelp" class="form-text text-muted">(El del tutor en caso de menores)</small>
+      </div>
+
+      <div class="form-group">
+        <label for="exampleInputEmail1">Correo electrónico</label>
+        <input type="email" class="form-control" id="inputEmail" aria-describedby="emailHelp"
+          placeholder="Introduzca email" formControlName="email">
+        <small id="emailHelp" class="form-text text-muted">(El del tutor en caso de menores)</small>
+      </div>
+
+      <div class="form-group">
+        <label for="exampleInputEmail1">Categoría</label>
+        <select class="form-control" id="selectCategoria" formControlName="select_categoria">
+          <option value="" selected disabled hidden>Seleccione categoría</option>
+          <option>SENIOR A</option>
+          <option>SENIOR B</option>
+          <option>JUVENIL A</option>
+          <option>JUVENIL B</option>
+          <option>JUVENIL C</option>
+          <option>CADETE A</option>
+          <option>CADETE B</option>
+          <option>INFANTIL A</option>
+          <option>INFANTIL B</option>
+          <option>INFANTIL C</option>
+          <option>ALEVIN A</option>
+          <option>ALEVIN B</option>
+          <option>ALEVIN C</option>
+          <option>BENJAMIN A</option>
+          <option>BENJAMIN B</option>
+          <option>BENJAMIN C</option>
+          <option>PREBENJAMIN FED</option>
+          <option>ESC. ALEVIN</option>
+          <option>ESC. BENJAMIN</option>
+          <option>ESC. PREBENJAMIN</option>
+          <option>VETERANOS</option>
+          <option>DIRECTIVOS</option>
+          <option>OTROS</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label for="exampleInputEmail1">Países/CCAA que visitaste o dónde estiviste en los últimos 14 días</label>
+        <input type="text" class="form-control" id="" aria-describedby="emailHelp"
+          placeholder="Introduzca lugares visitados" formControlName="paises">
+      </div>
+
+      <br />
+
+      <legend>Durante los últimos 14 días...</legend>
+
+      <div class="form-group">
+        <label class="">¿Tuvo contacto cercano con alguien diagnosticado con la enfermedad COVID19?</label>
+        <div class="custom-control custom-radio">
+          <input type="radio" id="radioPregunta1Si" value="si" name="customRadio" class="custom-control-input" formControlName="radioPregunta1">
+          <label class="custom-control-label" for="radioPregunta1Si">Si</label>
+        </div>
+        <div class="custom-control custom-radio">
+          <input type="radio" id="radioPregunta1No" value="no" name="customRadio" class="custom-control-input" formControlName="radioPregunta1">
+          <label class="custom-control-label" for="radioPregunta1No">No</label>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label class="">¿Proporcionó atención directa a pacientes de COVID-19?</label>
+        <div class="custom-control custom-radio">
+          <input type="radio" id="radioPregunta2Si" value="si" name="customRadio1" class="custom-control-input" formControlName="radioPregunta2">
+          <label class="custom-control-label" for="radioPregunta2Si">Si</label>
+        </div>
+        <div class="custom-control custom-radio">
+          <input type="radio" id="radioPregunta2No" value="no" name="customRadio1" class="custom-control-input" formControlName="radioPregunta2">
+          <label class="custom-control-label" for="radioPregunta2No">No</label>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label class="">¿Visitó o permaneció en un ambiente cerrado con algún paciente con la enfermedad
+          COVID-19?</label>
+        <div class="custom-control custom-radio">
+          <input type="radio" id="radioPregunta3Si" value="si" name="customRadio2" class="custom-control-input" formControlName="radioPregunta3">
+          <label class="custom-control-label" for="radioPregunta3Si">Si</label>
+        </div>
+        <div class="custom-control custom-radio">
+          <input type="radio" id="radioPregunta3No" value="no" name="customRadio2" class="custom-control-input" formControlName="radioPregunta3">
+          <label class="custom-control-label" for="radioPregunta3No">No</label>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label class="">¿Trabajó/estudió de forma cercana o compartiendo el mismo ambiente laboral o de
+          clase con pacientes de COVID-19?</label>
+        <div class="custom-control custom-radio">
+          <input type="radio" id="radioPregunta4Si" value="si" name="customRadio3" class="custom-control-input" formControlName="radioPregunta4">
+          <label class="custom-control-label" for="radioPregunta4Si">Si</label>
+        </div>
+        <div class="custom-control custom-radio">
+          <input type="radio" id="radioPregunta4No" value="no" name="customRadio3" class="custom-control-input" formControlName="radioPregunta4">
+          <label class="custom-control-label" for="radioPregunta4No">No</label>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label class="">¿Ha viajado con un paciente COVID-19 en cualquier medio de transporte? </label>
+        <div class="custom-control custom-radio">
+          <input type="radio" id="radioPregunta5Si" value="si" name="customRadio4" class="custom-control-input" formControlName="radioPregunta5">
+          <label class="custom-control-label" for="radioPregunta5Si">Si</label>
+        </div>
+        <div class="custom-control custom-radio">
+          <input type="radio" id="radioPregunta5No" value="no" name="customRadio4" class="custom-control-input" formControlName="radioPregunta5">
+          <label class="custom-control-label" for="radioPregunta5No">No</label>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label class="">¿Ha vivido en la misma casa que un paciente COVID-19?</label>
+        <div class="custom-control custom-radio">
+          <input type="radio" id="radioPregunta6Si" value="si" name="customRadio5" class="custom-control-input" formControlName="radioPregunta6">
+          <label class="custom-control-label" for="radioPregunta6Si">Si</label>
+        </div>
+        <div class="custom-control custom-radio">
+          <input type="radio" id="radioPregunta6No" value="no" name="customRadio5" class="custom-control-input" formControlName="radioPregunta6">
+          <label class="custom-control-label" for="radioPregunta6No">No</label>
+        </div>
+      </div>
+
+      <br />
+
+      <div class="form-group">
+        <label for="exampleInputEmail1">Consentimiento expreso del interesado del tratamiento de sus datos
+          personales facilitados, en cumplimiento de lo establecido en el artículo 6 de la Ley Orgánica 3/2018,
+          de 5 de diciembre, de Protección de Datos Personales y garantía de los derechos digitales, de conformidad
+          con lo dispuesto en el atículo 4.11 del Reglamento (UE) 2016/679.
+        </label>
+        <div class="custom-control custom-checkbox">
+          <input type="checkbox" class="custom-control-input" id="customCheck2">
+          <label class="custom-control-label" for="customCheck2">PRESTO MI CONSENTIMIENTO a que los datos personales
+            recogidos en la presente solicitud sean objeto del tratamiento necesario para el correcto trámite de la
+            misma, habiendo leído la información relativa a la protección de datos expresada a continuación.</label>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="exampleInputEmail1">Le comunicamos que los datos recabados serán objeto de tratamiento y de
+          conformidad con lo establecido en el artículo 11 de la Ley Orgánica 3/2018, de 5 de diciembre, de Protección
+          de Datos Personales y garantía de los derechos digitales, en relación con el artículo 13 del Reglamento
+          General de Protección de datos (Reglamento 2016/679 de 27 de abril de 2016 relativo a la protección de las
+          personas físicas en lo qe respecta al tratamiento de datos personales y a la libre circulación de estos
+          datos)
+          le informamos de lo siguiente: Responsable: CLUB EN CUESTIÓN; Finalidad: Salvaguardar los intereses vitales
+          de
+          las personas; Legitimación: Cumplimiento de una obligación legal, misión en Interés público; Destinatarios:
+          Están previstas cesiones de datos a: Organismos de la Seguridad Social, autoridades sanitarias y Fuerzas y
+          cuerpos de seguridad del estado; Derechos: Tiene derecho a acceder, rectificar y suprimir los datos, así
+          como
+          lotros derechos, que puede ejercer dirigiéndose al CLUB EN CUESTIÓN: Procedencia: El propio interesado: Esta
+          información se podrá compartir con las autoridades locales de Salud Pública para permitir un rápido rastreo
+          de
+          contactos si un participante en el evento sufre la enfermedad COVID-19 o llegó en contacto con un caso
+          confirmado.
+        </label>
+      </div>
+
+      <br />
+
+      <div class="form-group">
+        <button class="btn btn-warning btn-block" [disabled]="!homeForm.valid">Enviar</button>
+      </div>
+
+    </form>
+  </div>
+</div>
