@@ -1,0 +1,43 @@
+<div class="row">
+  <div class="col-12 mx-auto mt-5"></div>
+  <div class="card-body">
+    <table class="table table-dark">
+      <thead>
+      <tr>
+      <th>Nombre</th>
+      <th>Dni</th>
+      <th>Email</th>
+      <th>Dirección</th>
+      <th>Categoria</th>
+      <th>Colectivo</th>
+      <th>Paises/CCAA visitados</th>
+      <th>¿?</th>
+      <th>¿?</th>
+      <th>¿?</th>
+      <th>¿?</th>
+      <th>¿?</th>
+      <th>¿?</th>
+      <th>¿?</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let usuario of Usuario">
+      <td>{{usuario.nombre}}</td>
+      <td>{{usuario.dni}}</td>
+      <td>{{usuario.email}}</td>
+      <td>{{usuario.direccion}}</td>
+      <td>{{usuario.categoria}}</td>
+      <td>Cell</td>
+      <td>Cell</td>
+      <td>Cell</td>
+      <td>Cell</td>
+      <td>Cell</td>
+      <td>Cell</td>
+      <td>Cell</td>
+      <td>Cell</td>
+      </tr>
+      </tbody>
+      </table>
+
+  </div>
+</div>

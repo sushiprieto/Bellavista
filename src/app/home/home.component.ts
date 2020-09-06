@@ -31,9 +31,13 @@ export class HomeComponent implements OnInit {
   //   gender: new FormControl('')
   // });
 
-  constructor(private authSvc: AuthService, private router: Router) { }
+  constructor(private authSvc: AuthService, private router: Router) {
 
+
+   }
+   titulo1:string;
   ngOnInit(): void {
+    this.titulo1="¿Ha viajado con un paciente COVID-19 en cualquier medio de transporte?";
   }
   onSubmit() {
     console.log(this.homeForm.get('radioPregunta1').value);
