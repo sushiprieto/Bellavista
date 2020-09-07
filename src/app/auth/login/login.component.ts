@@ -25,11 +25,12 @@ export class LoginComponent implements OnInit {
     const {email, password} = this.loginForm.value;
     try {
       const user = await this.authSvc.login(email,password);
-    console.log('Form -->', this.loginForm.value);
+    console.log('Form -->', user);
 
     if (user) {
       //redirect
       this.router.navigate(['/home'])
+      sessionStorage.setItem('email',user.user.email);
     }
     } catch (error) {
       console.log(error);

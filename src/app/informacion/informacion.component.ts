@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { InformacionService } from 'src/app/informacion.service';
+import { FormGroup, FormControl } from '@angular/forms';
 import { formulario } from 'src/app/Model/formulario.model';
 
 @Component({
@@ -10,9 +11,13 @@ import { formulario } from 'src/app/Model/formulario.model';
 export class InformacionComponent implements OnInit {
   _formulario: formulario[];
 
+  infoForm = new FormGroup({
+    nombreFilter: new FormControl('')
+  });
+
   constructor(private _informacionService: InformacionService) {
 
-   }
+  }
 
   ngOnInit(): void {
     this._informacionService.getDatosFormulario().subscribe(data => {
@@ -32,8 +37,22 @@ export class InformacionComponent implements OnInit {
           p_covid6: e.payload.doc.data().p_covid6,
           telefono: e.payload.doc.data().Telefono
         } as unknown as formulario;
+      });
+      console.log(this._formulario);
     });
-console.log(this._formulario);
-  });}
-
   }
+
+  getNombreFiltro(): any[] {
+    var nombre = document.getElementById('inputNombre').value;
+    var filtrado: any[]
+
+    filtrado = this._formulario.filter((formulario: formulario) => formulario.nombre.includes(nombre));
+    //se carga la lista
+    this._formulario = filtrado; 
+
+    console.log(" lista filtrada ", filtrado);
+
+    return filtrado
+  }
+
+}
