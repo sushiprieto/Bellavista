@@ -30,7 +30,9 @@ export class HomeComponent implements OnInit {
 
   constructor(private authSvc: AuthService, private router: Router) { }
 
+   titulo1:string;
   ngOnInit(): void {
+    this.titulo1="¿Ha viajado con un paciente COVID-19 en cualquier medio de transporte?";
   }
   onSubmit() {
     let Record = {};
