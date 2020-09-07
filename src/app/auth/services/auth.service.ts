@@ -44,8 +44,8 @@ export class AuthService {
     return this.afAuth.authState.pipe(first()).toPromise();
   }
 
-  createUser(Record){
+  createUser(Record, Nombre){
 
-    return this.fireservices.collection('Personas').add(Record);
+    return this.fireservices.collection('Personas').doc(Nombre).set(Record);
   }
 }

@@ -24,20 +24,15 @@ export class HomeComponent implements OnInit {
     telefono: new FormControl(''),
     email: new FormControl(''),
     paises: new FormControl(''),
+    validateCheck: new FormControl('', [Validators.required]),
     select_categoria: new FormControl('', [Validators.required])
   });
-
-  // checksForm = new FormGroup({
-  //   gender: new FormControl('')
-  // });
 
   constructor(private authSvc: AuthService, private router: Router) { }
 
   ngOnInit(): void {
   }
   onSubmit() {
-    console.log(this.homeForm.get('radioPregunta1').value);
-
     let Record = {};
     Record['Colectivo'] = this.homeForm.value.colectivo;
     Record['Nombre'] = this.homeForm.value.nombre;
@@ -54,7 +49,7 @@ export class HomeComponent implements OnInit {
     Record['Pregunta-COVID-5'] = this.homeForm.get('radioPregunta5').value;
     Record['Pregunta-COVID-6'] = this.homeForm.get('radioPregunta6').value;
 
-    this.authSvc.createUser(Record).then(res => {
+    this.authSvc.createUser(Record, this.homeForm.value.nombre).then(res => {
       console.log(Record);
       this.homeForm.reset();
     })
