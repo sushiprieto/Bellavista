@@ -16,17 +16,20 @@
       </div>
 
       <div class="form-group">
-        <label for="inputEmail">Tipo de colectivo</label>
-        <input type="text" class="form-control" id="inputColectivo" placeholder="Introduzca tipo de colectivo"
-          formControlName="colectivo">
-        <small id="emailHelp" class="form-text text-muted">(Deportista, organización o personal club, usuario,
-          familiar,
-          otros)</small>
+        <label for="inputEmail"><strong>Tipo de colectivo</strong></label>
+        <select class="colectivo form-control" id="inputColectivo" formControlName="colectivo">
+          <option value="" selected disabled hidden>Seleccione tipo de colectivo</option>
+          <option>Deportista</option>
+          <option>organización o personal club</option>
+          <option>usuario</option>
+          <option>familiar</option>
+          <option>otros</option>
+        </select>
       </div>
 
       <div class="form-group">
-        <label for="exampleInputEmail1">Nombre y apellidos</label>
-        <input type="text" class="form-control" id="inputNombre" placeholder="Introduzca nombre y apellidos"
+        <label for="exampleInputEmail1"><strong>Nombre y apellidos</strong></label>
+        <input type="text" class="nombre form-control" id="inputNombre" placeholder="Introduzca nombre y apellidos"
           formControlName="nombre"
           [ngClass]="{'is-invalid':homeForm.get('nombre').touched && homeForm.get('nombre').invalid}" required>
         <small id="emailHelp" class="form-text text-muted">(El del tutor en caso de menores)</small>
@@ -36,8 +39,8 @@
       </div>
 
       <div class="form-group">
-        <label for="exampleInputEmail1">DNI</label>
-        <input type="text" class="form-control" id="inputDni" placeholder="Introduzca DNI" formControlName="dni"
+        <label for="exampleInputEmail1"><strong>DNI</strong></label>
+        <input type="text" class="dni form-control" id="inputDni" placeholder="Introduzca DNI" formControlName="dni"
           maxlength="9" [ngClass]="{'is-invalid':homeForm.get('dni').touched && homeForm.get('dni').invalid}"
           pattern="(([X-Z]{1})([-]?)(\d{7})([-]?)([a-zA-Z]{1}))|((\d{8})([-]?)([a-zA-Z]{1}))">
         <div *ngIf="homeForm.get('dni').touched && homeForm.get('dni').invalid" class="invalid-feedback">
@@ -48,29 +51,29 @@
       </div>
 
       <div class="form-group">
-        <label for="exampleInputEmail1">Dirección habitual</label>
-        <input type="text" class="form-control" id="inputDireccion" aria-describedby="emailHelp"
+        <label for="exampleInputEmail1"><strong>Dirección habitual</strong></label>
+        <input type="text" class="direccion form-control" id="inputDireccion" aria-describedby="emailHelp"
           placeholder="Introduzca dirección" formControlName="direccion">
         <small id="emailHelp" class="form-text text-muted">(Calle/apartamento/ciudad/numero postal/pais)</small>
       </div>
 
       <div class="form-group">
-        <label for="exampleInputEmail1">Número de teléfono</label>
-        <input type="number" class="form-control" id="inputTelefono" aria-describedby="emailHelp"
+        <label for="exampleInputEmail1"><strong>Número de teléfono</strong></label>
+        <input type="number" class="telefono form-control" id="inputTelefono" aria-describedby="emailHelp"
           placeholder="Introduzca teléfono" formControlName="telefono">
         <small id="emailHelp" class="form-text text-muted">(El del tutor en caso de menores)</small>
       </div>
 
       <div class="form-group">
-        <label for="exampleInputEmail1">Correo electrónico</label>
-        <input type="email" class="form-control" id="inputEmail" aria-describedby="emailHelp"
+        <label for="exampleInputEmail1"><strong>Correo electrónico</strong></label>
+        <input type="email" class="email form-control" id="inputEmail" aria-describedby="emailHelp"
           placeholder="Introduzca email" formControlName="email">
         <small id="emailHelp" class="form-text text-muted">(El del tutor en caso de menores)</small>
       </div>
 
       <div class="form-group">
-        <label for="exampleInputEmail1">Categoría</label>
-        <select class="form-control" id="selectCategoria" formControlName="select_categoria">
+        <label for="exampleInputEmail1"><strong>Categoría</strong></label>
+        <select class="categoria form-control" id="selectCategoria" formControlName="select_categoria">
           <option value="" selected disabled hidden>Seleccione categoría</option>
           <option>SENIOR A</option>
           <option>SENIOR B</option>
@@ -99,8 +102,9 @@
       </div>
 
       <div class="form-group">
-        <label for="exampleInputEmail1">Países/CCAA que visitaste o dónde estiviste en los últimos 14 días</label>
-        <input type="text" class="form-control" id="" aria-describedby="emailHelp"
+        <label for="exampleInputEmail1"><strong>Países/CCAA que visitaste o dónde estiviste en los últimos 14
+            días</strong></label>
+        <input type="text" class="paises form-control" id="" aria-describedby="emailHelp"
           placeholder="Introduzca lugares visitados" formControlName="paises">
       </div>
 
@@ -197,21 +201,26 @@
       <br />
 
       <div class="form-group">
-        <label for="exampleInputEmail1">Consentimiento expreso del interesado del tratamiento de sus datos
+        <label class="consentimiento">Consentimiento expreso del interesado del tratamiento de sus datos
           personales facilitados, en cumplimiento de lo establecido en el artículo 6 de la Ley Orgánica 3/2018,
           de 5 de diciembre, de Protección de Datos Personales y garantía de los derechos digitales, de conformidad
           con lo dispuesto en el atículo 4.11 del Reglamento (UE) 2016/679.
         </label>
-        <div class="custom-control custom-checkbox">
-          <input type="checkbox" class="custom-control-input" id="customCheck2">
-          <label class="custom-control-label" for="customCheck2">PRESTO MI CONSENTIMIENTO a que los datos personales
-            recogidos en la presente solicitud sean objeto del tratamiento necesario para el correcto trámite de la
-            misma, habiendo leído la información relativa a la protección de datos expresada a continuación.</label>
+        <div class="consentimiento custom-control custom-checkbox">
+          <input type="checkbox" class="custom-control-input" id="customCheck2" formControlName="validateCheck"
+            [ngClass]="{'is-invalid':homeForm.get('validateCheck').touched && homeForm.get('validateCheck').invalid}"
+            required>
+          <label class="custom-control-label" for="customCheck2">
+            <strong>PRESTO MI CONSENTIMIENTO</strong>a que los datos personales recogidos en la presente solicitud sean
+            objeto del
+            tratamiento necesario para el correcto trámite de la misma, habiendo leído la información relativa a la
+            protección de datos expresada a continuación.</label>
         </div>
       </div>
 
       <div class="form-group">
-        <label for="exampleInputEmail1">Le comunicamos que los datos recabados serán objeto de tratamiento y de
+        <label for="exampleInputEmail1" class="lopd">Le comunicamos que los datos recabados serán objeto de tratamiento
+          y de
           conformidad con lo establecido en el artículo 11 de la Ley Orgánica 3/2018, de 5 de diciembre, de Protección
           de Datos Personales y garantía de los derechos digitales, en relación con el artículo 13 del Reglamento
           General de Protección de datos (Reglamento 2016/679 de 27 de abril de 2016 relativo a la protección de las
