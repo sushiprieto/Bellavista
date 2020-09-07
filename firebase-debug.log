@@ -1,0 +1,68 @@
+[debug] [2020-09-07T12:50:28.706Z] ----------------------------------------------------------------------
+[debug] [2020-09-07T12:50:28.708Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\se_ca\AppData\Roaming\npm\node_modules\firebase-tools\lib\bin\firebase.js deploy --debug
+[debug] [2020-09-07T12:50:28.708Z] CLI Version:   8.10.0
+[debug] [2020-09-07T12:50:28.708Z] Platform:      win32
+[debug] [2020-09-07T12:50:28.708Z] Node Version:  v12.18.3
+[debug] [2020-09-07T12:50:28.709Z] Time:          Mon Sep 07 2020 14:50:28 GMT+0200 (GMT+02:00)
+[debug] [2020-09-07T12:50:28.709Z] ----------------------------------------------------------------------
+[debug] [2020-09-07T12:50:28.709Z] 
+[debug] [2020-09-07T12:50:28.714Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2020-09-07T12:50:28.715Z] > authorizing via signed-in user
+[debug] [2020-09-07T12:50:28.716Z] [iam] checking project union-deportiva-bellavista for permissions ["firebase.projects.get","firebasehosting.sites.update"]
+[debug] [2020-09-07T12:50:28.719Z] >>> HTTP REQUEST POST https://cloudresourcemanager.googleapis.com/v1/projects/union-deportiva-bellavista:testIamPermissions  
+ {"permissions":["firebase.projects.get","firebasehosting.sites.update"]}
+[debug] [2020-09-07T12:50:29.504Z] <<< HTTP RESPONSE 200 {"content-type":"application/json; charset=UTF-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","date":"Mon, 07 Sep 2020 12:50:26 GMT","server":"ESF","cache-control":"private","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","server-timing":"gfet4t7; dur=682","alt-svc":"h3-29=\":443\"; ma=2592000,h3-27=\":443\"; ma=2592000,h3-T051=\":443\"; ma=2592000,h3-T050=\":443\"; ma=2592000,h3-Q050=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,quic=\":443\"; ma=2592000; v=\"46,43\"","accept-ranges":"none","transfer-encoding":"chunked"}
+[debug] [2020-09-07T12:50:29.511Z] >>> HTTP REQUEST GET https://firebase.googleapis.com/v1beta1/projects/union-deportiva-bellavista  
+ 
+[debug] [2020-09-07T12:50:29.723Z] <<< HTTP RESPONSE 200 {"content-type":"application/json; charset=UTF-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","date":"Mon, 07 Sep 2020 12:50:26 GMT","server":"ESF","cache-control":"private","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","alt-svc":"h3-29=\":443\"; ma=2592000,h3-27=\":443\"; ma=2592000,h3-T051=\":443\"; ma=2592000,h3-T050=\":443\"; ma=2592000,h3-Q050=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,quic=\":443\"; ma=2592000; v=\"46,43\"","accept-ranges":"none","transfer-encoding":"chunked"}
+[info] 
+[info] === Deploying to 'union-deportiva-bellavista'...
+[info] 
+[info] i  deploying hosting 
+[debug] [2020-09-07T12:50:29.727Z] >>> HTTP REQUEST POST https://firebasehosting.googleapis.com/v1beta1/sites/union-deportiva-bellavista/versions  
+ {"config":{},"labels":{"deployment-tool":"cli-firebase"}}
+[debug] [2020-09-07T12:50:31.036Z] <<< HTTP RESPONSE 200 {"content-type":"application/json; charset=UTF-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","date":"Mon, 07 Sep 2020 12:50:27 GMT","server":"ESF","cache-control":"private","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","alt-svc":"h3-29=\":443\"; ma=2592000,h3-27=\":443\"; ma=2592000,h3-T051=\":443\"; ma=2592000,h3-T050=\":443\"; ma=2592000,h3-Q050=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,quic=\":443\"; ma=2592000; v=\"46,43\"","accept-ranges":"none","transfer-encoding":"chunked"}
+[info] i  hosting[union-deportiva-bellavista]: beginning deploy... 
+[info] i  hosting[union-deportiva-bellavista]: found 14 files in dist/Bellavista 
+[debug] [2020-09-07T12:50:31.053Z] [hosting] hash cache [ZGlzdFxCZWxsYXZpc3Rh] stored for 14 files
+[debug] [2020-09-07T12:50:31.054Z] [hosting][hash queue][FINAL] {"max":1,"min":0,"avg":0,"active":0,"complete":14,"success":14,"errored":0,"retried":0,"total":14,"elapsed":3}
+[debug] [2020-09-07T12:50:31.054Z] >>> HTTP REQUEST POST https://firebasehosting.googleapis.com/v1beta1/sites/union-deportiva-bellavista/versions/e64f2fbcebc14e8e:populateFiles  
+ <request body omitted>
+[debug] [2020-09-07T12:50:32.097Z] <<< HTTP RESPONSE 200 {"content-type":"application/json; charset=UTF-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","date":"Mon, 07 Sep 2020 12:50:28 GMT","server":"ESF","cache-control":"private","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","alt-svc":"h3-29=\":443\"; ma=2592000,h3-27=\":443\"; ma=2592000,h3-T051=\":443\"; ma=2592000,h3-T050=\":443\"; ma=2592000,h3-Q050=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,quic=\":443\"; ma=2592000; v=\"46,43\"","accept-ranges":"none","transfer-encoding":"chunked"}
+[debug] [2020-09-07T12:50:32.098Z] [hosting][populate queue][FINAL] {"max":1046,"min":1046,"avg":1046,"active":0,"complete":1,"success":1,"errored":0,"retried":0,"total":1,"elapsed":1046}
+[debug] [2020-09-07T12:50:32.099Z] [hosting] uploads queued: 0
+[debug] [2020-09-07T12:50:32.100Z] [hosting][upload queue][FINAL] {"max":0,"min":9999999999,"avg":0,"active":0,"complete":0,"success":0,"errored":0,"retried":0,"total":0,"elapsed":1599483032100}
+[info] +  hosting[union-deportiva-bellavista]: file upload complete 
+[debug] [2020-09-07T12:50:32.101Z] [hosting] deploy completed after 1059ms
+[debug] [2020-09-07T12:50:32.176Z] [
+  {
+    "config": {
+      "public": "dist/Bellavista",
+      "ignore": [
+        "firebase.json",
+        "**/.*",
+        "**/node_modules/**"
+      ],
+      "site": "union-deportiva-bellavista"
+    },
+    "site": "union-deportiva-bellavista",
+    "version": "sites/union-deportiva-bellavista/versions/e64f2fbcebc14e8e"
+  }
+]
+[info] i  hosting[union-deportiva-bellavista]: finalizing version... 
+[debug] [2020-09-07T12:50:32.178Z] >>> HTTP REQUEST PATCH https://firebasehosting.googleapis.com/v1beta1/sites/union-deportiva-bellavista/versions/e64f2fbcebc14e8e?updateMask=status  
+ {"status":"FINALIZED"}
+[debug] [2020-09-07T12:50:33.196Z] <<< HTTP RESPONSE 200 {"content-type":"application/json; charset=UTF-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","date":"Mon, 07 Sep 2020 12:50:30 GMT","server":"ESF","cache-control":"private","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","alt-svc":"h3-29=\":443\"; ma=2592000,h3-27=\":443\"; ma=2592000,h3-T051=\":443\"; ma=2592000,h3-T050=\":443\"; ma=2592000,h3-Q050=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,quic=\":443\"; ma=2592000; v=\"46,43\"","accept-ranges":"none","transfer-encoding":"chunked"}
+[debug] [2020-09-07T12:50:33.197Z] [hosting] finalized version for union-deportiva-bellavista: {"name":"sites/union-deportiva-bellavista/versions/e64f2fbcebc14e8e","status":"FINALIZED","config":{},"labels":{"deployment-tool":"cli-firebase"},"createTime":"2020-09-07T12:50:27.408971Z","createUser":{"email":"ninjassassin666@gmail.com"},"finalizeTime":"2020-09-07T12:50:30.034918Z","finalizeUser":{"email":"ninjassassin666@gmail.com"}}
+[info] +  hosting[union-deportiva-bellavista]: version finalized 
+[info] i  hosting[union-deportiva-bellavista]: releasing new version... 
+[debug] [2020-09-07T12:50:33.199Z] >>> HTTP REQUEST POST https://firebasehosting.googleapis.com/v1beta1/sites/union-deportiva-bellavista/releases?version_name=sites/union-deportiva-bellavista/versions/e64f2fbcebc14e8e  
+ {"message":null}
+[debug] [2020-09-07T12:50:34.166Z] <<< HTTP RESPONSE 200 {"content-type":"application/json; charset=UTF-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","date":"Mon, 07 Sep 2020 12:50:31 GMT","server":"ESF","cache-control":"private","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","alt-svc":"h3-29=\":443\"; ma=2592000,h3-27=\":443\"; ma=2592000,h3-T051=\":443\"; ma=2592000,h3-T050=\":443\"; ma=2592000,h3-Q050=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,quic=\":443\"; ma=2592000; v=\"46,43\"","accept-ranges":"none","transfer-encoding":"chunked"}
+[debug] [2020-09-07T12:50:34.166Z] [hosting] release: {"name":"sites/union-deportiva-bellavista/releases/1599483030354833","version":{"name":"sites/union-deportiva-bellavista/versions/e64f2fbcebc14e8e","status":"FINALIZED","config":{},"labels":{"deployment-tool":"cli-firebase"},"createTime":"2020-09-07T12:50:27.408971Z","createUser":{"email":"ninjassassin666@gmail.com"},"finalizeTime":"2020-09-07T12:50:30.034918Z","finalizeUser":{"email":"ninjassassin666@gmail.com"},"preview":{}},"type":"DEPLOY","releaseTime":"2020-09-07T12:50:30.354833881Z","releaseUser":{"email":"ninjassassin666@gmail.com"}}
+[info] +  hosting[union-deportiva-bellavista]: release complete 
+[info] 
+[info] +  Deploy complete! 
+[info] 
+[info] Project Console: https://console.firebase.google.com/project/union-deportiva-bellavista/overview
+[info] Hosting URL: https://union-deportiva-bellavista.web.app
