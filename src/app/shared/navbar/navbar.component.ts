@@ -23,6 +23,7 @@ export class NavbarComponent implements OnInit {
   async onLogout(){
     try {
       await this.authSvc.logout();
+      sessionStorage.removeItem("email");
       this.router.navigate(['/login']);
     } catch (error) {
       console.log(error);
