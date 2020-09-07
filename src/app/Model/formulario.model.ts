@@ -12,4 +12,5 @@ export class formulario {
   p_covid5: string;
   p_covid6: string;
   telefono: any;
+  paises: string;
 }

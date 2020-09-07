@@ -13,5 +13,6 @@ export class InformacionService {
 
   getDatosFormulario() {
     return this.firestore.collection('Personas').snapshotChanges();
-}
+  }
+  
 }
