@@ -16,22 +16,22 @@ export class LoginComponent implements OnInit {
     password: new FormControl('')
   });
 
-  constructor(private authSvc: AuthService,private router: Router) { }
+  constructor(private authSvc: AuthService, private router: Router) { }
 
   ngOnInit(): void {
   }
 
-  async onLogin(){
-    const {email, password} = this.loginForm.value;
+  async onLogin() {
+    const { email, password } = this.loginForm.value;
     try {
-      const user = await this.authSvc.login(email,password);
-    console.log('Form -->', user);
+      const user = await this.authSvc.login(email, password);
+      console.log('Form -->', user);
 
-    if (user) {
-      //redirect
-      this.router.navigate(['/home'])
-      sessionStorage.setItem('email',user.user.email);
-    }
+      if (user) {
+        //redirect
+        this.router.navigate(['/informacion'])
+        sessionStorage.setItem('email', user.user.email);
+      }
     } catch (error) {
       console.log(error);
     }

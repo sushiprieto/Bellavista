@@ -29,12 +29,10 @@ export class HomeComponent implements OnInit {
   });
 
   constructor(private authSvc: AuthService, private router: Router) { }
-    EmailAdmin:string ="elaburrimientomanda@gmail.com";
+
   ngOnInit(): void {
-    if(this.EmailAdmin!=sessionStorage.getItem('email')){
-      this.router.navigate(['/login']);
-    }
   }
+
   onSubmit() {
     let Record = {};
     Record['Colectivo'] = this.homeForm.value.colectivo;
