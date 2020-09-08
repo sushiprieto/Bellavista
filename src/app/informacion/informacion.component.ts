@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { InformacionService } from 'src/app/informacion.service';
+import { FormGroup, FormControl } from '@angular/forms';
 import { formulario } from 'src/app/Model/formulario.model';
 
 @Component({
@@ -9,10 +10,15 @@ import { formulario } from 'src/app/Model/formulario.model';
 })
 export class InformacionComponent implements OnInit {
   _formulario: formulario[];
+  _formularioFiltrado: formulario[] = [];
+
+  infoForm = new FormGroup({
+    nombreFilter: new FormControl('')
+  });
 
   constructor(private _informacionService: InformacionService) {
 
-   }
+  }
 
   ngOnInit(): void {
     this._informacionService.getDatosFormulario().subscribe(data => {
@@ -32,8 +38,76 @@ export class InformacionComponent implements OnInit {
           p_covid6: e.payload.doc.data().p_covid6,
           telefono: e.payload.doc.data().Telefono
         } as unknown as formulario;
+      });
+      console.log(this._formulario);
     });
-console.log(this._formulario);
-  });}
-
   }
+
+  getNombreFiltro() {
+
+    this._formularioFiltrado = [];
+
+    var dni = document.getElementById('inputDni').value;
+    var nombre = document.getElementById('inputNombre').value;
+    var categoria = document.getElementById('inputCategoria').value;
+    // var filtrado: formulario[]
+
+    console.log(" lista filtrada ", dni, " ", nombre, " ", categoria);
+
+
+
+    if (dni != "") {
+      for (let index = 0; index < this._formulario.length; index++) {
+        if (this._formulario[index].dni.includes(dni)) {
+          this._formularioFiltrado.push(this._formulario[index])
+        }
+        
+      }
+      console.log(" for dni ", this._formularioFiltrado);
+    }
+
+    if (nombre != "" && this._formularioFiltrado.length > 0) {
+      for (let index = 0; index < this._formularioFiltrado.length; index++) {
+        if (!this._formularioFiltrado[index].nombre.includes(nombre)) {
+          this._formularioFiltrado.splice(index, 1)
+        }
+        
+      }
+    } else if(nombre != "") {
+      for (let index = 0; index < this._formulario.length; index++) {
+        if (this._formulario[index].nombre.includes(nombre)) {
+          this._formularioFiltrado.push(this._formulario[index])
+        }
+        
+      }
+    }
+
+    if (categoria != "" && this._formularioFiltrado.length > 0) {
+      for (let index = 0; index < this._formularioFiltrado.length; index++) {
+        if (!this._formularioFiltrado[index].categoria.includes(categoria)) {
+          this._formularioFiltrado.splice(index, 1)
+        }
+        
+      }
+    } else if(categoria != "") {
+      for (let index = 0; index < this._formulario.length; index++) {
+        if (this._formulario[index].categoria.includes(categoria)) {
+          this._formularioFiltrado.push(this._formulario[index])
+        }
+        
+      }
+    }
+
+
+
+    // filtrado = this._formulario.filter((formulario: formulario) => formulario.nombre.includes(nombre));
+    // this._formulario = filtrado; 
+
+    console.log(" lista filtrada ", this._formularioFiltrado);
+  }
+
+  reloadList() {
+    window.location.reload();
+  }
+
+}

@@ -29,10 +29,11 @@ export class HomeComponent implements OnInit {
   });
 
   constructor(private authSvc: AuthService, private router: Router) { }
-
-   titulo1:string;
+    EmailAdmin:string ="elaburrimientomanda@gmail.com";
   ngOnInit(): void {
-    this.titulo1="¿Ha viajado con un paciente COVID-19 en cualquier medio de transporte?";
+    if(this.EmailAdmin!=sessionStorage.getItem('email')){
+      this.router.navigate(['/login']);
+    }
   }
   onSubmit() {
     let Record = {};
