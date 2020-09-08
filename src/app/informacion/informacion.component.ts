@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { InformacionService } from 'src/app/informacion.service';
 import { FormGroup, FormControl } from '@angular/forms';
 import { formulario } from 'src/app/Model/formulario.model';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-informacion',
@@ -11,16 +12,20 @@ import { formulario } from 'src/app/Model/formulario.model';
 export class InformacionComponent implements OnInit {
   _formulario: formulario[];
   _formularioFiltrado: formulario[] = [];
+  EmailAdmin: string;
 
   infoForm = new FormGroup({
     nombreFilter: new FormControl('')
   });
 
-  constructor(private _informacionService: InformacionService) {
-
+  constructor(private _informacionService: InformacionService, private router: Router) {
+    this.EmailAdmin = "bellavistaud@gmail.com";
   }
 
   ngOnInit(): void {
+    if (this.EmailAdmin != sessionStorage.getItem('email')) {
+      this.router.navigate(['/login']);
+    }
     this._informacionService.getDatosFormulario().subscribe(data => {
       this._formulario = data.map(e => {
         return {
@@ -61,7 +66,7 @@ export class InformacionComponent implements OnInit {
         if (this._formulario[index].dni.includes(dni)) {
           this._formularioFiltrado.push(this._formulario[index])
         }
-        
+
       }
       console.log(" for dni ", this._formularioFiltrado);
     }
@@ -71,14 +76,14 @@ export class InformacionComponent implements OnInit {
         if (!this._formularioFiltrado[index].nombre.includes(nombre)) {
           this._formularioFiltrado.splice(index, 1)
         }
-        
+
       }
-    } else if(nombre != "") {
+    } else if (nombre != "") {
       for (let index = 0; index < this._formulario.length; index++) {
         if (this._formulario[index].nombre.includes(nombre)) {
           this._formularioFiltrado.push(this._formulario[index])
         }
-        
+
       }
     }
 
@@ -87,14 +92,14 @@ export class InformacionComponent implements OnInit {
         if (!this._formularioFiltrado[index].categoria.includes(categoria)) {
           this._formularioFiltrado.splice(index, 1)
         }
-        
+
       }
-    } else if(categoria != "") {
+    } else if (categoria != "") {
       for (let index = 0; index < this._formulario.length; index++) {
         if (this._formulario[index].categoria.includes(categoria)) {
           this._formularioFiltrado.push(this._formulario[index])
         }
-        
+
       }
     }
 
