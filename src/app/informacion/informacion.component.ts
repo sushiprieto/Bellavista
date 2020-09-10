@@ -51,9 +51,9 @@ export class InformacionComponent implements OnInit {
 
     this._formularioFiltrado = [];
 
-    var dni = document.getElementById('inputDni').value;
-    var nombre = document.getElementById('inputNombre').value;
-    var categoria = document.getElementById('inputCategoria').value;
+    var dni = (<HTMLInputElement>document.getElementById('inputDni')).value;
+    var nombre = (<HTMLInputElement>document.getElementById('inputNombre')).value;
+    var categoria = (<HTMLInputElement>document.getElementById('inputCategoria')).value;
     // var filtrado: formulario[]
 
     console.log(" lista filtrada ", dni, " ", nombre, " ", categoria);

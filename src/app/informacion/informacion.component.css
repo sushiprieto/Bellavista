@@ -1,0 +1,13 @@
+button {
+    /* outline: none !important;
+    border: none; 
+    background: transparent; */
+    width: 40%;
+    margin-left: 30%;
+    margin-right: 30%;
+    margin-top: 30px;
+}
+
+.recargar {
+    background-color: #ffd75e;
+}
