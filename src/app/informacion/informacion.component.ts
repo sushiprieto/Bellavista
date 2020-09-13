@@ -29,6 +29,7 @@ export class InformacionComponent implements OnInit {
     this._informacionService.getDatosFormulario().subscribe(data => {
       this._formulario = data.map(e => {
         return {
+          fecha: e.payload.doc.get('Fecha'),
           categoria: e.payload.doc.get('Categoria'),
           colectivo: e.payload.doc.get('Colectivo'),
           direccion: e.payload.doc.get('Direccion'),

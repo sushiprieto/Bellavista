@@ -34,7 +34,10 @@ export class HomeComponent implements OnInit {
   }
 
   onSubmit() {
+    var fecha = new Date();
+    var fechaString: String = fecha.toDateString()
     let Record = {};
+    Record['Fecha'] = fechaString;
     Record['Colectivo'] = this.homeForm.value.colectivo;
     Record['Nombre'] = this.homeForm.value.nombre;
     Record['Dni'] = this.homeForm.value.dni;
@@ -52,6 +55,8 @@ export class HomeComponent implements OnInit {
 
     this.authSvc.createUser(Record, this.homeForm.value.nombre).then(res => {
       console.log(Record);
+      alert("Gracias por rellenar el formulario");
+      window.scroll(0,0);
       this.homeForm.reset();
     })
 
