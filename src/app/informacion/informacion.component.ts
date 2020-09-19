@@ -4,11 +4,13 @@ import { FormGroup, FormControl } from '@angular/forms';
 import { formulario } from 'src/app/Model/formulario.model';
 import { Router } from '@angular/router';
 
+
 @Component({
   selector: 'app-informacion',
   templateUrl: './informacion.component.html',
   styleUrls: ['./informacion.component.css']
 })
+
 export class InformacionComponent implements OnInit {
   _formulario: formulario[];
   _formularioFiltrado: formulario[] = [];
@@ -42,7 +44,8 @@ export class InformacionComponent implements OnInit {
           p_covid4: e.payload.doc.get('p_covid4'),
           p_covid5: e.payload.doc.get('p_covid5'),
           p_covid6: e.payload.doc.get('p_covid6'),
-          telefono: e.payload.doc.get('Telefono')} as unknown as formulario;
+          telefono: e.payload.doc.get('Telefono')
+        } as unknown as formulario;
       });
       console.log(this._formulario);
     });
@@ -55,11 +58,11 @@ export class InformacionComponent implements OnInit {
     var dni = (<HTMLInputElement>document.getElementById('inputDni')).value;
     var nombre = (<HTMLInputElement>document.getElementById('inputNombre')).value;
     var categoria = (<HTMLInputElement>document.getElementById('inputCategoria')).value;
-    // var filtrado: formulario[]
+    // var fecha = (<HTMLInputElement>document.getElementById('inputFecha')).value;
 
-    console.log(" lista filtrada ", dni, " ", nombre, " ", categoria);
-
-
+    console.log("prueba de elementos", dni, " ", nombre, " ", categoria, " ", fecha);
+    // console.log(" fecha bbdd ", this._formulario[0].fecha);
+    // console.log(" fecha seleccionada ", fecha);
 
     if (dni != "") {
       for (let index = 0; index < this._formulario.length; index++) {
@@ -103,16 +106,34 @@ export class InformacionComponent implements OnInit {
       }
     }
 
+    // if (fecha != "" && this._formularioFiltrado.length > 0) {
+    //   for (let index = 0; index < this._formularioFiltrado.length; index++) {
+    //     if (!this._formularioFiltrado[index].fecha.includes(fecha)) {
+    //       this._formularioFiltrado.splice(index, 1)
+    //     }
 
+    //   }
+    // } else if (fecha != "") {
+    //   for (let index = 0; index < this._formulario.length; index++) {
+    //     if (this._formulario[index].fecha.includes(fecha)) {
+    //       this._formularioFiltrado.push(this._formulario[index])
+    //     }
 
-    // filtrado = this._formulario.filter((formulario: formulario) => formulario.nombre.includes(nombre));
-    // this._formulario = filtrado; 
+    //   }
+    // }
 
     console.log(" lista filtrada ", this._formularioFiltrado);
   }
 
   reloadList() {
     window.location.reload();
+  }
+
+  parseDate(dateString: string): Date {
+    if (dateString) {
+      return new Date(dateString);
+    }
+    return null;
   }
 
 }

@@ -1,101 +1,116 @@
 <div class="row">
   <div class="col-12 mx-auto mt-5">
-  <div class="card-body">
-    
-    <h2 class="text-center">LISTADO</h2>
+    <div class="card-body">
 
-    <div class="form-group">
-      <label for="exampleInputEmail1"><strong>Dni: </strong></label>
-      <input type="text" class="form-control" id="inputDni" placeholder="Introduzca nombre"
-        formControlName="dniFilter">
-      <label for="exampleInputEmail1"><strong>Nombre: </strong></label>
-      <input type="text" class="form-control" id="inputNombre" placeholder="Introduzca nombre"
-        formControlName="nombreFilter">
-      <label for="exampleInputEmail1"><strong>Categoria: </strong></label>
-      <select class="categoria form-control" id="inputCategoria" formControlName="inputCategoria">
-        <option value="" selected disabled hidden>Seleccione categoría</option>
-        <option>SENIOR A</option>
-        <option>SENIOR B</option>
-        <option>JUVENIL A</option>
-        <option>JUVENIL B</option>
-        <option>JUVENIL C</option>
-        <option>CADETE A</option>
-        <option>CADETE B</option>
-        <option>INFANTIL A</option>
-        <option>INFANTIL B</option>
-        <option>INFANTIL C</option>
-        <option>ALEVIN A</option>
-        <option>ALEVIN B</option>
-        <option>ALEVIN C</option>
-        <option>BENJAMIN A</option>
-        <option>BENJAMIN B</option>
-        <option>BENJAMIN C</option>
-        <option>PREBENJAMIN FED</option>
-        <option>ESC. ALEVIN</option>
-        <option>ESC. BENJAMIN</option>
-        <option>ESC. PREBENJAMIN</option>
-        <option>VETERANOS</option>
-        <option>DIRECTIVOS</option>
-        <option>OTROS</option>
-      </select>
+      <h2 class="text-center">LISTADO</h2>
 
-      <button class="btn btn-warning btn-block" (click)="getNombreFiltro()">Buscar</button>
-      <button class="recargar btn btn-warning btn-block" (click)="reloadList()">Recargar lista</button>
+      <div class="form-group">
+        <label for="exampleInputEmail1"><strong>Dni: </strong></label>
+        <input type="text" class="form-control" id="inputDni" placeholder="Introduzca dni" formControlName="dniFilter">
+
+        <label for="exampleInputEmail1"><strong>Nombre: </strong></label>
+        <input type="text" class="form-control" id="inputNombre" placeholder="Introduzca nombre"
+          formControlName="nombreFilter">
+
+        <label for="exampleInputEmail1"><strong>Categoria: </strong></label>
+        <select class="categoria form-control" id="inputCategoria" formControlName="inputCategoria">
+          <option value="" selected disabled hidden>Seleccione categoría</option>
+          <option>SENIOR A</option>
+          <option>SENIOR B</option>
+          <option>JUVENIL A</option>
+          <option>JUVENIL B</option>
+          <option>JUVENIL C</option>
+          <option>CADETE A</option>
+          <option>CADETE B</option>
+          <option>INFANTIL A</option>
+          <option>INFANTIL B</option>
+          <option>INFANTIL C</option>
+          <option>ALEVIN A</option>
+          <option>ALEVIN B</option>
+          <option>ALEVIN C</option>
+          <option>BENJAMIN A</option>
+          <option>BENJAMIN B</option>
+          <option>BENJAMIN C</option>
+          <option>PREBENJAMIN FED</option>
+          <option>ESC. ALEVIN</option>
+          <option>ESC. BENJAMIN</option>
+          <option>ESC. PREBENJAMIN</option>
+          <option>VETERANOS</option>
+          <option>DIRECTIVOS</option>
+          <option>OTROS</option>
+        </select>
+
+        <!-- <label for="exampleInputEmail1"><strong>Fecha: </strong></label> -->
+        <!-- <input type="date" id="inputFecha" name="trip-start"> -->
+        <!-- <select class="categoria form-control" *ngFor="let formulario of _formulario" id="inputFecha" formControlName="inputFecha">
+          <option>{{formulario.fecha}}</option>
+        </select> -->
+
+        <button class="btn btn-warning btn-block" (click)="getNombreFiltro()">Buscar</button>
+        <button class="recargar btn btn-warning btn-block" (click)="reloadList()">Recargar lista</button>
+      </div>
+
+      <div class="table-responsive mt-5">
+        <table class="table table-bordered table-sm ">
+          <thead class="table-dark">
+            <tr>
+              <th>Verificar</th>
+              <th>Dni</th>
+              <!-- <th class="tableHeader" *ngFor="let formulario of _formulario" (click)="sort(col.propertyName)">Nombre</th> -->
+              <th scope="col">Nombre</th>
+              <th scope="col">Fecha</th>
+              <th scope="col">Categoria</th>
+              <th scope="col">Colectivo</th>
+              <th scope="col">Pregunta COVID1</th>
+              <th scope="col">Pregunta COVID2</th>
+              <th scope="col">Pregunta COVID3</th>
+              <th scope="col">Pregunta COVID4</th>
+              <th scope="col">Pregunta COVID5</th>
+              <th scope="col">Pregunta COVID6</th>
+              <th scope="col">Paises/CCAA visitados</th>
+            </tr>
+          </thead>
+          <tbody *ngIf="_formularioFiltrado.length == 0">
+            <tr *ngFor="let formulario of _formulario">
+              <td class="checkbox">
+                <label>
+                  <input type="checkbox" name="checkVerificar"/> 
+                </label>
+              </td>
+              <td>{{formulario.dni}}</td>
+              <td>{{formulario.nombre}}</td>
+              <td>{{formulario.fecha}}</td>
+              <td>{{formulario.categoria}}</td>
+              <td>{{formulario.colectivo}}</td>
+              <td>{{formulario.p_covid1}}</td>
+              <td>{{formulario.p_covid2}}</td>
+              <td>{{formulario.p_covid3}}</td>
+              <td>{{formulario.p_covid4}}</td>
+              <td>{{formulario.p_covid5}}</td>
+              <td>{{formulario.p_covid6}}</td>
+              <td>{{formulario.paises}}</td>
+            </tr>
+          </tbody>
+          <tbody *ngIf="_formularioFiltrado.length > 0">
+            <tr *ngFor="let formulario of _formularioFiltrado">
+              <td></td>
+              <td>{{formulario.dni}}</td>
+              <td>{{formulario.nombre}}</td>
+              <td>{{formulario.fecha}}</td>
+              <td>{{formulario.categoria}}</td>
+              <td>{{formulario.colectivo}}</td>
+              <td>{{formulario.p_covid1}}</td>
+              <td>{{formulario.p_covid2}}</td>
+              <td>{{formulario.p_covid3}}</td>
+              <td>{{formulario.p_covid4}}</td>
+              <td>{{formulario.p_covid5}}</td>
+              <td>{{formulario.p_covid6}}</td>
+              <td>{{formulario.paises}}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
     </div>
-
-    <div class="table-responsive mt-5">
-      <table class="table table-bordered table-sm ">
-        <thead class="table-dark">
-          <tr>
-            <th>Dni</th>
-            <th>Nombre</th>
-            <th>Fecha</th>
-            <th>Categoria</th>
-            <th>Colectivo</th>
-            <th>Pregunta COVID1</th>
-            <th>Pregunta COVID2</th>
-            <th>Pregunta COVID3</th>
-            <th>Pregunta COVID4</th>
-            <th>Pregunta COVID5</th>
-            <th>Pregunta COVID6</th>
-            <th>Paises/CCAA visitados</th>
-          </tr>
-        </thead>
-        <tbody *ngIf="_formularioFiltrado.length == 0">
-          <tr *ngFor="let formulario of _formulario" >
-            <td>{{formulario.dni}}</td>
-            <td>{{formulario.nombre}}</td>
-            <td>{{formulario.fecha}}</td>
-            <td>{{formulario.categoria}}</td>
-            <td>{{formulario.colectivo}}</td>
-            <td>{{formulario.p_covid1}}</td>
-            <td>{{formulario.p_covid2}}</td>
-            <td>{{formulario.p_covid3}}</td>
-            <td>{{formulario.p_covid4}}</td>
-            <td>{{formulario.p_covid5}}</td>
-            <td>{{formulario.p_covid6}}</td>
-            <td>{{formulario.paises}}</td>
-          </tr>
-        </tbody>
-      <tbody *ngIf="_formularioFiltrado.length > 0">
-          <tr *ngFor="let formulario of _formularioFiltrado" >
-            <td>{{formulario.dni}}</td>
-            <td>{{formulario.nombre}}</td>
-            <td>{{formulario.fecha}}</td>
-            <td>{{formulario.categoria}}</td>
-            <td>{{formulario.colectivo}}</td>
-            <td>{{formulario.p_covid1}}</td>
-            <td>{{formulario.p_covid2}}</td>
-            <td>{{formulario.p_covid3}}</td>
-            <td>{{formulario.p_covid4}}</td>
-            <td>{{formulario.p_covid5}}</td>
-            <td>{{formulario.p_covid6}}</td>
-            <td>{{formulario.paises}}</td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-    
-  </div>
   </div>
 </div>

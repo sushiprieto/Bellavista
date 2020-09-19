@@ -11,3 +11,20 @@ button {
 .recargar {
     background-color: #ffd75e;
 }
+
+td.checkbox {
+    position: relative;
+}
+td.checkbox label {
+    /* Take up full width/height */
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+
+    /* Ensure the checkbox is centered */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
