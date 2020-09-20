@@ -3,6 +3,7 @@ import { InformacionService } from 'src/app/informacion.service';
 import { FormGroup, FormControl } from '@angular/forms';
 import { formulario } from 'src/app/Model/formulario.model';
 import { Router } from '@angular/router';
+import { AngularFirestore } from '@angular/fire/firestore';
 
 
 @Component({
@@ -12,6 +13,7 @@ import { Router } from '@angular/router';
 })
 
 export class InformacionComponent implements OnInit {
+  _formularioPrueba: formulario[];
   _formulario: formulario[];
   _formularioFiltrado: formulario[] = [];
   EmailAdmin: string;
@@ -20,7 +22,7 @@ export class InformacionComponent implements OnInit {
     nombreFilter: new FormControl('')
   });
 
-  constructor(private _informacionService: InformacionService, private router: Router) {
+  constructor(private _informacionService: InformacionService, private router: Router, private db: AngularFirestore) {
     this.EmailAdmin = "bellavistaud@gmail.com";
   }
 
@@ -31,6 +33,7 @@ export class InformacionComponent implements OnInit {
     this._informacionService.getDatosFormulario().subscribe(data => {
       this._formulario = data.map(e => {
         return {
+          collection: e.payload.doc.id,
           fecha: e.payload.doc.get('Fecha'),
           categoria: e.payload.doc.get('Categoria'),
           colectivo: e.payload.doc.get('Colectivo'),
@@ -49,6 +52,16 @@ export class InformacionComponent implements OnInit {
       });
       console.log(this._formulario);
     });
+
+    this._informacionService.getDatosFormularioPruebas().subscribe(data => {
+      this._formularioPrueba = data.map(e => {
+        return {
+          collection: e.payload.doc.id
+        } as unknown as formulario;
+      });
+      console.log(this._formulario);
+    });
+    
   }
 
   getNombreFiltro() {
@@ -60,7 +73,7 @@ export class InformacionComponent implements OnInit {
     var categoria = (<HTMLInputElement>document.getElementById('inputCategoria')).value;
     // var fecha = (<HTMLInputElement>document.getElementById('inputFecha')).value;
 
-    console.log("prueba de elementos", dni, " ", nombre, " ", categoria, " ", fecha);
+    //console.log("prueba de elementos", dni, " ", nombre, " ", categoria, " ", fecha);
     // console.log(" fecha bbdd ", this._formulario[0].fecha);
     // console.log(" fecha seleccionada ", fecha);
 
@@ -124,6 +137,28 @@ export class InformacionComponent implements OnInit {
 
     console.log(" lista filtrada ", this._formularioFiltrado);
   }
+
+  borrarTodo(){
+    for (let index = 0; index < this._formulario.length; index++) {
+      this.db.collection("Personas").doc(this._formulario[index].collection).delete().then(function() {
+        console.log("Document successfully deleted!");
+    }).catch(function(error) {
+        console.error("Error removing document: ", error);
+    });
+    }
+      
+    }
+  borrarTodo2(){
+      for (let index = 0; index < this._formularioPrueba.length; index++) {
+        this.db.collection("Prueba").doc(this._formularioPrueba[index].collection).delete().then(function() {
+          console.log("Document successfully deleted!");
+      }).catch(function(error) {
+          console.error("Error removing document: ", error);
+      });
+      }
+        
+      }
+    
 
   reloadList() {
     window.location.reload();

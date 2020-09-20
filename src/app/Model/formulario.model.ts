@@ -1,4 +1,5 @@
 export class formulario {
+  collection: string;
   categoria: string;
   colectivo: string;
   direccion: string;

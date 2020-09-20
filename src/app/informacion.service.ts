@@ -14,4 +14,8 @@ export class InformacionService {
   getDatosFormulario() {
     return this.firestore.collection('Personas').snapshotChanges();
 }
+
+getDatosFormularioPruebas() {
+  return this.firestore.collection('Prueba').snapshotChanges();
+}
 }
