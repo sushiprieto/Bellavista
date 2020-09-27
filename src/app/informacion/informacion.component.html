@@ -1,7 +1,7 @@
-<div class="row">
+<div class="row" #content>
   <div class="col-12 mx-auto mt-5">
-    <div class="card-body">
-      <button (click)="borrarTodo2()"> limpiar</button>
+    <div class="card-body" id="MyDIv">
+      <button (click)="borrarTodo()">Borrar lista completa</button>
 
       <h2 class="text-center">LISTADO</h2>
 
@@ -49,9 +49,10 @@
 
         <button class="btn btn-warning btn-block" (click)="getNombreFiltro()">Buscar</button>
         <button class="recargar btn btn-warning btn-block" (click)="reloadList()">Recargar lista</button>
+        <!-- <button class="recargar btn btn-warning btn-block" (click)="exportAsPDF('miTabla');">Generar PDF</button> -->
       </div>
 
-      <div class="table-responsive mt-5">
+      <div class="table-responsive mt-5" id="miTabla">
         <table class="table table-bordered table-sm ">
           <thead class="table-dark">
             <tr>

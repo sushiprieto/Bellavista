@@ -1,10 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { InformacionService } from 'src/app/informacion.service';
 import { FormGroup, FormControl } from '@angular/forms';
 import { formulario } from 'src/app/Model/formulario.model';
 import { Router } from '@angular/router';
 import { AngularFirestore } from '@angular/fire/firestore';
-
+import { jsPDF } from "jspdf";
+import html2canvas from 'html2canvas';
 
 @Component({
   selector: 'app-informacion',
@@ -61,7 +62,7 @@ export class InformacionComponent implements OnInit {
       });
       console.log(this._formulario);
     });
-    
+
   }
 
   getNombreFiltro() {
@@ -138,27 +139,27 @@ export class InformacionComponent implements OnInit {
     console.log(" lista filtrada ", this._formularioFiltrado);
   }
 
-  borrarTodo(){
+  borrarTodo() {
     for (let index = 0; index < this._formulario.length; index++) {
-      this.db.collection("Personas").doc(this._formulario[index].collection).delete().then(function() {
+      this.db.collection("Personas").doc(this._formulario[index].collection).delete().then(function () {
         console.log("Document successfully deleted!");
-    }).catch(function(error) {
+      }).catch(function (error) {
         console.error("Error removing document: ", error);
-    });
-    }
-      
-    }
-  borrarTodo2(){
-      for (let index = 0; index < this._formularioPrueba.length; index++) {
-        this.db.collection("Prueba").doc(this._formularioPrueba[index].collection).delete().then(function() {
-          console.log("Document successfully deleted!");
-      }).catch(function(error) {
-          console.error("Error removing document: ", error);
       });
-      }
-        
-      }
-    
+    }
+
+  }
+  borrarTodo2() {
+    for (let index = 0; index < this._formularioPrueba.length; index++) {
+      this.db.collection("Prueba").doc(this._formularioPrueba[index].collection).delete().then(function () {
+        console.log("Document successfully deleted!");
+      }).catch(function (error) {
+        console.error("Error removing document: ", error);
+      });
+    }
+
+  }
+
 
   reloadList() {
     window.location.reload();
@@ -169,6 +170,39 @@ export class InformacionComponent implements OnInit {
       return new Date(dateString);
     }
     return null;
+  }
+
+  @ViewChild('content') content: ElementRef
+  public generarPdf() {
+
+    let doc = new jsPDF();
+
+    let specialElementHandlers = {
+      '#editor': function (element, renderer) {
+        return true;
+      }
+    }
+
+    let content = this.content.nativeElement;
+
+    doc.fromHTML(content.innerHTML, 15, 15, {
+      'width': 190,
+      'elementHandlers': specialElementHandlers
+    });
+
+    doc.save('prueba.pdf')
+
+  }
+
+  exportAsPDF(div_id)
+  {
+    let data = document.getElementById(div_id);  
+    html2canvas(data).then(canvas => {
+      const contentDataURL = canvas.toDataURL('image/png')  
+      let pdf = new jsPDF('p', 'pt', [canvas.width, canvas.height]);
+      pdf.addImage(contentDataURL, 'PNG', 0, 0, canvas.width, canvas.height); 
+      pdf.save('listado_personas_club_deportivo_bellavista.pdf');   
+    }); 
   }
 
 }
